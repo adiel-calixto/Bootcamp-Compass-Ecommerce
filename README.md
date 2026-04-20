@@ -4,7 +4,7 @@
 
 ## 🧩 Arquitetura
 
-> Inserir aqui o diagrama de arquitetura (ver instruções na seção 2)
+![Diagrama da Arquitetura](./diagrama.png)
 
 ---
 
@@ -22,6 +22,7 @@
 ---
 
 ### 2. Shopify → Hydrogen (Dia 16)
+*(Não implementado)*
 
 * Shopify gerencia catálogo via Admin
 * Hydrogen consome via **Storefront API (GraphQL)**
@@ -50,8 +51,9 @@
 ---
 
 ### 5. Dashboard de Integração (Dia 18)
+*(Não implementado)*
 
-* Hydrogen agrega dados das três plataformas
+* Hydrogen agrega dados das três plataformas (Commerce, AEM e Shopify)
 * Consumo paralelo de APIs com `Promise.allSettled`
 
 **Rota:**
@@ -66,6 +68,24 @@
 | Commerce   | REST    | /V1/bootcamp/products   | Anonymous  |
 | AEM        | GraphQL | /content/cq:graphql/global/endpoint.json | Basic Auth |
 | AEM        | JSON    | /content/experience-fragments/bootcamp-wknd/us/en/banner-promo-bootcamp/master.model.json   | Basic Auth |
-| Shopify    | GraphQL | Storefront API          | Token      |
+| Shopify    | GraphQL | Storefront API (não impl.) | Token      |
 
 ---
+
+## 📝 Descrição
+
+Este repositório contém um monorepo com dois projetos independentes integrados:
+
+- **bootcamp-commerce/**: Instância Magento 2.4.8-p4 com desenvolvimento customizado de módulos e integrações via API REST
+- **bootcamp-wknd/**: Projeto Adobe Experience Manager (AEM) Maven multi-module para gerenciamento de conteúdo e experiência
+
+A integração entre as plataformas é realizada através de 5 fluxos principais que conectam Commerce e AEM, permitindo sincronização de catálogo e conteúdo. Os fluxos envolvendo Shopify/Hydrogen não foram implementados.
+
+---
+
+## 📂 Subprojetos
+
+Consulte o README.md dentro de cada subpasta para instruções específicas:
+
+- **[bootcamp-commerce/](bootcamp-commerce/README.md)** - Magento 2 com módulos customizados
+- **[bootcamp-wknd/](bootcamp-wknd/README.md)** - AEM com componente ProductShowcase
