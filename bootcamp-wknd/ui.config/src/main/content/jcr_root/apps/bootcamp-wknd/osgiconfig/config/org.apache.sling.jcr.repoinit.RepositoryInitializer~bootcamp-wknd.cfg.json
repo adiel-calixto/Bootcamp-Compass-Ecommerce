@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/bootcamp-wknd",
+        "create path (nt:unstructured) /content/dam/bootcamp-wknd/jcr:content",
+        "set properties on /content/dam/bootcamp-wknd/jcr:content\n  set cq:conf{String} to /conf/bootcamp-wknd\n  set jcr:title{String} to \"Bootcamp - AEM\"\nend"
+    ]
+}

@@ -1,0 +1,831 @@
+[2026-04-17T16:45:11.648068+00:00] INFO: Starting scenario(s): scenario/build/generate.xml (magento/magento2-base version: 2.4.8-p4)
+[2026-04-17T16:45:11.910140+00:00] DEBUG: Running step: pre-build
+[2026-04-17T16:45:11.917892+00:00] INFO: Verbosity level is not set
+[2026-04-17T16:45:11.917991+00:00] DEBUG: Flag .static_content_deploy has already been deleted.
+[2026-04-17T16:45:11.918021+00:00] DEBUG: Step "pre-build" finished
+[2026-04-17T16:45:11.918041+00:00] DEBUG: Running step: apply-patches
+[2026-04-17T16:45:11.918067+00:00] NOTICE: Applying patches
+[2026-04-17T16:45:11.918276+00:00] DEBUG: php ./vendor/bin/ece-patches apply --no-interaction
+[2026-04-17T16:45:12.343005+00:00] DEBUG: Hot-fixes were not found. Skipping
+[2026-04-17T16:45:12.343096+00:00] NOTICE: End of applying patches
+[2026-04-17T16:45:12.343133+00:00] DEBUG: Step "apply-patches" finished
+[2026-04-17T16:45:12.343153+00:00] DEBUG: Running step: set-production-mode
+[2026-04-17T16:45:12.343171+00:00] INFO: Set Magento application mode to 'production'
+[2026-04-17T16:45:12.343310+00:00] DEBUG: Step "set-production-mode" finished
+[2026-04-17T16:45:12.343332+00:00] DEBUG: Running step: validate-configuration
+[2026-04-17T16:45:12.343349+00:00] NOTICE: Validating configuration
+[2026-04-17T16:45:12.367151+00:00] NOTICE: Fix configuration with given suggestions:
+[2026-04-17T16:45:12.367233+00:00] WARNING: [1001] File app/etc/config.php does not exist
+Please run the following commands:
+1. bin/magento module:enable --all
+2. git add -f app/etc/config.php
+3. git commit -m 'Adding config.php'
+4. git push
+[2026-04-17T16:45:12.377641+00:00] WARNING: [1008] File php.ini or op-exclude.txt does not exist
+Check if your cloud template contains latest php.ini and op-exclude.txt files
+[2026-04-17T16:45:12.377765+00:00] WARNING: [1003] The modules section is missing from the shared config file.
+[2026-04-17T16:45:12.377826+00:00] WARNING: [1006] The configured state is not ideal
+No stores/website/locales found in config.php
+  To speed up the deploy process do the following:
+  1. Using SSH, log in to your Magento Cloud account
+  2. Run "php ./vendor/bin/ece-tools config:dump"
+  3. Using SCP, copy the app/etc/config.php file to your local repository
+  4. Add, commit, and push your changes to the app/etc/config.php file
+[2026-04-17T16:45:12.377903+00:00] NOTICE: End of validation
+[2026-04-17T16:45:12.377942+00:00] DEBUG: Step "validate-configuration" finished
+[2026-04-17T16:45:12.377963+00:00] DEBUG: Running step: refresh-modules
+[2026-04-17T16:45:12.377981+00:00] NOTICE: Reconciling installed modules with shared config.
+[2026-04-17T16:45:12.378224+00:00] DEBUG: php ./bin/magento module:enable --all --ansi --no-interaction
+[2026-04-17T16:45:12.808057+00:00] DEBUG: [32mThe following modules have been enabled:[39m
+[32m- Magento_Csp
+- Magento_Store
+- Magento_AdminAnalytics
+- Magento_Directory
+- Magento_AdminNotification
+- Magento_AdobeIms
+- Magento_AdobeImsApi
+- Magento_AdobeStockAdminUi
+- Magento_MediaGallery
+- Magento_AdobeStockAssetApi
+- Magento_AdobeStockClient
+- Magento_AdobeStockClientApi
+- Magento_AdobeStockImage
+- Magento_Theme
+- Magento_AdobeStockImageApi
+- Magento_AdvancedPricingImportExport
+- Magento_Backend
+- Magento_Amqp
+- Magento_Security
+- Magento_ApplicationPerformanceMonitor
+- Magento_ApplicationPerformanceMonitorNewRelic
+- Magento_Config
+- Magento_User
+- Magento_Authorization
+- Magento_Eav
+- Magento_Customer
+- Magento_AdminAdobeIms
+- Magento_Backup
+- Magento_Indexer
+- Magento_GraphQl
+- Magento_BundleImportExport
+- Magento_CacheInvalidate
+- Magento_Variable
+- Magento_Cms
+- Magento_Rule
+- Magento_Integration
+- Magento_GraphQlResolverCache
+- Magento_EavGraphQl
+- Magento_Search
+- Magento_CatalogImportExport
+- Magento_Catalog
+- Magento_CatalogInventory
+- Magento_CatalogPageBuilderAnalytics
+- Magento_CatalogRule
+- Magento_Msrp
+- Magento_CatalogRuleGraphQl
+- Magento_CatalogSearch
+- Magento_CatalogUrlRewrite
+- Magento_StoreGraphQl
+- Magento_MediaStorage
+- Magento_Quote
+- Magento_SalesSequence
+- Magento_CheckoutAgreementsGraphQl
+- Magento_CloudComponents
+- Magento_MediaGalleryUi
+- Magento_CmsGraphQl
+- Magento_CmsPageBuilderAnalytics
+- Magento_CmsUrlRewrite
+- Magento_CmsUrlRewriteGraphQl
+- Magento_CatalogGraphQl
+- Magento_TwoFactorAuth
+- Magento_Payment
+- Magento_Sales
+- Magento_QuoteGraphQl
+- Magento_Checkout
+- Magento_Contact
+- Magento_ContactGraphQl
+- Magento_Cookie
+- Magento_Cron
+- Magento_GraphQlServer
+- Magento_Widget
+- Magento_Robots
+- Magento_Analytics
+- Magento_Downloadable
+- Magento_Newsletter
+- Magento_CustomerImportExport
+- Magento_DataExporter
+- Magento_Deploy
+- Magento_Developer
+- Magento_Dhl
+- Magento_AdvancedSearch
+- Magento_DirectoryGraphQl
+- Magento_DownloadableGraphQl
+- Magento_CustomerDownloadableGraphQl
+- Magento_ImportExport
+- Magento_Bundle
+- Magento_CatalogCustomerGraphQl
+- Magento_Elasticsearch
+- Magento_Elasticsearch8
+- Magento_Email
+- Magento_EncryptionKey
+- Magento_Fedex
+- Magento_GiftMessage
+- Magento_GiftMessageGraphQl
+- Magento_GoogleAdwords
+- Magento_GoogleAnalytics
+- Magento_GoogleGtag
+- Magento_Ui
+- Magento_BundleGraphQl
+- Magento_PageCache
+- Magento_GraphQlNewRelic
+- Magento_CatalogCmsGraphQl
+- Magento_AdminGraphQlServer
+- Magento_GroupedProduct
+- Magento_GroupedImportExport
+- Magento_GroupedCatalogInventory
+- Magento_GroupedProductGraphQl
+- Magento_DownloadableImportExport
+- Magento_Captcha
+- Magento_InstantPurchase
+- Magento_CatalogAnalytics
+- Magento_IntegrationGraphQl
+- Magento_Inventory
+- Magento_InventoryAdminUi
+- Magento_InventoryAdvancedCheckout
+- Magento_InventoryApi
+- Magento_InventoryBundleImportExport
+- Magento_InventoryBundleProduct
+- Magento_InventoryBundleProductAdminUi
+- Magento_InventoryBundleProductIndexer
+- Magento_InventoryCatalog
+- Magento_InventorySales
+- Magento_InventoryCatalogAdminUi
+- Magento_InventoryCatalogApi
+- Magento_InventoryCatalogFrontendUi
+- Magento_InventoryCatalogRule
+- Magento_InventoryCatalogSearch
+- Magento_InventoryCatalogSearchBundleProduct
+- Magento_InventoryCatalogSearchConfigurableProduct
+- Magento_ConfigurableProduct
+- Magento_ConfigurableProductGraphQl
+- Magento_InventoryConfigurableProduct
+- Magento_InventoryConfigurableProductIndexer
+- Magento_InventoryConfiguration
+- Magento_InventoryConfigurationApi
+- Magento_InventoryDistanceBasedSourceSelection
+- Magento_InventoryDistanceBasedSourceSelectionAdminUi
+- Magento_InventoryDistanceBasedSourceSelectionApi
+- Magento_InventoryElasticsearch
+- Magento_InventoryExportStockApi
+- Magento_InventoryIndexer
+- Magento_InventorySalesApi
+- Magento_InventoryGroupedProduct
+- Magento_InventoryGroupedProductAdminUi
+- Magento_InventoryGroupedProductIndexer
+- Magento_InventoryImportExport
+- Magento_InventoryInStorePickupApi
+- Magento_InventoryInStorePickupAdminUi
+- Magento_InventorySourceSelectionApi
+- Magento_InventoryInStorePickup
+- Magento_InventoryInStorePickupGraphQl
+- Magento_Shipping
+- Magento_InventoryInStorePickupShippingApi
+- Magento_InventoryInStorePickupQuoteGraphQl
+- Magento_InventoryInStorePickupSales
+- Magento_InventoryInStorePickupSalesApi
+- Magento_InventoryInStorePickupQuote
+- Magento_InventoryInStorePickupShipping
+- Magento_InventoryInStorePickupShippingAdminUi
+- Magento_Multishipping
+- Magento_Webapi
+- Magento_InventoryCache
+- Magento_InventoryLowQuantityNotification
+- Magento_Reports
+- Magento_InventoryLowQuantityNotificationApi
+- Magento_InventoryMultiDimensionalIndexerApi
+- Magento_InventoryProductAlert
+- Magento_InventoryQuoteGraphQl
+- Magento_InventoryRequisitionList
+- Magento_InventoryReservations
+- Magento_InventoryReservationCli
+- Magento_InventoryReservationsApi
+- Magento_InventoryExportStock
+- Magento_InventorySalesAdminUi
+- Magento_CatalogInventoryGraphQl
+- Magento_InventorySalesAsyncOrder
+- Magento_InventorySalesFrontendUi
+- Magento_InventorySetupFixtureGenerator
+- Magento_InventoryShipping
+- Magento_InventoryShippingAdminUi
+- Magento_InventorySourceDeductionApi
+- Magento_InventorySourceSelection
+- Magento_InventoryInStorePickupFrontend
+- Magento_InventorySwatchesFrontendUi
+- Magento_InventoryVisualMerchandiser
+- Magento_InventoryWishlist
+- Magento_JwtFrameworkAdapter
+- Magento_JwtUserToken
+- Magento_LayeredNavigation
+- Magento_LoginAsCustomer
+- Magento_LoginAsCustomerAdminUi
+- Magento_LoginAsCustomerApi
+- Magento_LoginAsCustomerAssistance
+- Magento_LoginAsCustomerFrontendUi
+- Magento_LoginAsCustomerGraphQl
+- Magento_LoginAsCustomerLog
+- Magento_LoginAsCustomerPageCache
+- Magento_LoginAsCustomerQuote
+- Magento_LoginAsCustomerSales
+- Magento_Marketplace
+- Magento_MediaContent
+- Magento_MediaContentApi
+- Magento_MediaContentCatalog
+- Magento_MediaContentCms
+- Magento_MediaContentSynchronization
+- Magento_MediaContentSynchronizationApi
+- Magento_MediaContentSynchronizationCatalog
+- Magento_MediaContentSynchronizationCms
+- Magento_AdobeStockAsset
+- Magento_MediaGalleryApi
+- Magento_MediaGalleryCatalog
+- Magento_MediaGalleryCatalogIntegration
+- Magento_MediaGalleryCatalogUi
+- Magento_MediaGalleryCmsUi
+- Magento_MediaGalleryIntegration
+- Magento_MediaGalleryMetadata
+- Magento_MediaGalleryMetadataApi
+- Magento_MediaGalleryRenditions
+- Magento_MediaGalleryRenditionsApi
+- Magento_MediaGallerySynchronization
+- Magento_MediaGallerySynchronizationApi
+- Magento_MediaGallerySynchronizationMetadata
+- Magento_AdobeStockImageAdminUi
+- Magento_MediaGalleryUiApi
+- Magento_CatalogWidget
+- Magento_MessageQueue
+- Magento_ConfigurableImportExport
+- Magento_MsrpConfigurableProduct
+- Magento_MsrpGroupedProduct
+- Magento_InventoryInStorePickupMultishipping
+- Magento_MysqlMq
+- Magento_NewRelicReporting
+- Magento_CustomerGraphQl
+- Magento_NewsletterGraphQl
+- Magento_OfflinePayments
+- Magento_SalesRule
+- Magento_OpenSearch
+- Magento_OrderCancellation
+- Magento_OrderCancellationGraphQl
+- Magento_OrderCancellationUi
+- Magento_Sitemap
+- Magento_PageBuilder
+- Magento_PageBuilderAnalytics
+- Magento_PageBuilderImageAttribute
+- Magento_GraphQlCache
+- Magento_CardinalCommerce
+- Magento_PaymentGraphQl
+- Magento_ServiceProxy
+- Magento_Vault
+- Magento_PaymentServicesDashboard
+- Magento_PaymentServicesPaypalGraphQl
+- Magento_QueryXml
+- Magento_ServicesConnector
+- Magento_Paypal
+- Magento_PaypalGraphQl
+- Magento_Persistent
+- Magento_ProductAlert
+- Magento_ProductVideo
+- Magento_ServicesId
+- Magento_CheckoutAgreements
+- Magento_QuoteAnalytics
+- Magento_QuoteBundleOptions
+- Magento_QuoteConfigurableOptions
+- Magento_QuoteDownloadableLinks
+- Magento_InventoryConfigurableProductAdminUi
+- Magento_ReCaptchaAdminUi
+- Magento_ReCaptchaCheckout
+- Magento_ReCaptchaCheckoutSalesRule
+- Magento_ReCaptchaContact
+- Magento_ReCaptchaCustomer
+- Magento_ReCaptchaFrontendUi
+- Magento_ReCaptchaMigration
+- Magento_ReCaptchaNewsletter
+- Magento_ReCaptchaPaypal
+- Magento_ReCaptchaResendConfirmationEmail
+- Magento_ReCaptchaReview
+- Magento_ReCaptchaSendFriend
+- Magento_ReCaptchaStorePickup
+- Magento_ReCaptchaUi
+- Magento_ReCaptchaUser
+- Magento_ReCaptchaValidation
+- Magento_ReCaptchaValidationApi
+- Magento_ReCaptchaVersion2Checkbox
+- Magento_ReCaptchaVersion2Invisible
+- Magento_ReCaptchaVersion3Invisible
+- Magento_ReCaptchaWebapiApi
+- Magento_ReCaptchaWebapiGraphQl
+- Magento_ReCaptchaWebapiRest
+- Magento_ReCaptchaWebapiUi
+- Magento_ReCaptchaWishlist
+- Magento_RelatedProductGraphQl
+- Magento_ReleaseNotification
+- Magento_RemoteStorage
+- Magento_InventoryLowQuantityNotificationAdminUi
+- Magento_RequireJs
+- Magento_Review
+- Magento_ReviewAnalytics
+- Magento_ReviewGraphQl
+- Magento_AwsS3
+- Magento_Rss
+- Magento_PageBuilderAdminAnalytics
+- Magento_ServicesIdGraphQlServer
+- Magento_CatalogRuleConfigurable
+- Magento_SalesAnalytics
+- Magento_ServicesIdLayout
+- Magento_SalesGraphQl
+- Magento_SalesInventory
+- Magento_OfflineShipping
+- Magento_SalesRuleGraphQl
+- Magento_ConfigurableProductSales
+- Magento_UrlRewrite
+- Magento_UrlRewriteGraphQl
+- Magento_CustomerAnalytics
+- Magento_Securitytxt
+- Magento_SendFriend
+- Magento_SendFriendGraphQl
+- Magento_PaymentServicesBase
+- Magento_SaaSCommon
+- Magento_SalesDataExporter
+- Magento_StoreDataExporter
+- Magento_PaymentServicesPaypal
+- Magento_InventoryInStorePickupSalesAdminUi
+- Magento_AwsS3PageBuilder
+- Magento_AsynchronousOperations
+- Magento_AsyncConfig
+- Magento_PaymentServicesSaaSExport
+- Magento_CompareListGraphQl
+- Magento_Swagger
+- Magento_SwaggerWebapi
+- Magento_SwaggerWebapiAsync
+- Magento_Swatches
+- Magento_SwatchesGraphQl
+- Magento_SwatchesLayeredNavigation
+- Magento_Tax
+- Magento_TaxGraphQl
+- Magento_TaxImportExport
+- Magento_InventoryGraphQl
+- Magento_ThemeGraphQl
+- Magento_Translation
+- Magento_AdminAdobeImsTwoFactorAuth
+- Magento_GoogleOptimizer
+- Magento_Ups
+- Magento_SampleData
+- Magento_CatalogUrlRewriteGraphQl
+- Magento_Stomp
+- Magento_Usps
+- Magento_InventoryConfigurableProductFrontendUi
+- Magento_PaypalCaptcha
+- Magento_VaultGraphQl
+- Magento_Version
+- Magento_InventoryInStorePickupWebapiExtension
+- Magento_WebapiAsync
+- Magento_WebapiSecurity
+- Magento_Weee
+- Magento_WeeeGraphQl
+- Magento_CurrencySymbol
+- Magento_Wishlist
+- Magento_WishlistAnalytics
+- Magento_WishlistGraphQl
+- PayPal_Braintree
+- PayPal_BraintreeCustomerBalance
+- PayPal_BraintreeGiftCard
+- PayPal_BraintreeGiftCardAccount
+- PayPal_BraintreeGiftWrapping
+- PayPal_BraintreeGraphQl
+- PayPal_BraintreeReward[39m
+
+[32mCache cleared successfully.[39m
+[32mGenerated classes cleared successfully. Please run the 'setup:di:compile' command to generate classes.[39m
+[32mInfo: Some modules might require static view files to be cleared. To do this, run 'module:enable' with the --clear-static-content option to clear them.[39m
+[2026-04-17T16:45:12.808336+00:00] INFO: The following modules have been enabled:
+Magento_Csp
+Magento_Store
+Magento_AdminAnalytics
+Magento_Directory
+Magento_AdminNotification
+Magento_AdobeIms
+Magento_AdobeImsApi
+Magento_AdobeStockAdminUi
+Magento_MediaGallery
+Magento_AdobeStockAssetApi
+Magento_AdobeStockClient
+Magento_AdobeStockClientApi
+Magento_AdobeStockImage
+Magento_Theme
+Magento_AdobeStockImageApi
+Magento_AdvancedPricingImportExport
+Magento_Backend
+Magento_Amqp
+Magento_Security
+Magento_ApplicationPerformanceMonitor
+Magento_ApplicationPerformanceMonitorNewRelic
+Magento_Config
+Magento_User
+Magento_Authorization
+Magento_Eav
+Magento_Customer
+Magento_AdminAdobeIms
+Magento_Backup
+Magento_Indexer
+Magento_GraphQl
+Magento_BundleImportExport
+Magento_CacheInvalidate
+Magento_Variable
+Magento_Cms
+Magento_Rule
+Magento_Integration
+Magento_GraphQlResolverCache
+Magento_EavGraphQl
+Magento_Search
+Magento_CatalogImportExport
+Magento_Catalog
+Magento_CatalogInventory
+Magento_CatalogPageBuilderAnalytics
+Magento_CatalogRule
+Magento_Msrp
+Magento_CatalogRuleGraphQl
+Magento_CatalogSearch
+Magento_CatalogUrlRewrite
+Magento_StoreGraphQl
+Magento_MediaStorage
+Magento_Quote
+Magento_SalesSequence
+Magento_CheckoutAgreementsGraphQl
+Magento_CloudComponents
+Magento_MediaGalleryUi
+Magento_CmsGraphQl
+Magento_CmsPageBuilderAnalytics
+Magento_CmsUrlRewrite
+Magento_CmsUrlRewriteGraphQl
+Magento_CatalogGraphQl
+Magento_TwoFactorAuth
+Magento_Payment
+Magento_Sales
+Magento_QuoteGraphQl
+Magento_Checkout
+Magento_Contact
+Magento_ContactGraphQl
+Magento_Cookie
+Magento_Cron
+Magento_GraphQlServer
+Magento_Widget
+Magento_Robots
+Magento_Analytics
+Magento_Downloadable
+Magento_Newsletter
+Magento_CustomerImportExport
+Magento_DataExporter
+Magento_Deploy
+Magento_Developer
+Magento_Dhl
+Magento_AdvancedSearch
+Magento_DirectoryGraphQl
+Magento_DownloadableGraphQl
+Magento_CustomerDownloadableGraphQl
+Magento_ImportExport
+Magento_Bundle
+Magento_CatalogCustomerGraphQl
+Magento_Elasticsearch
+Magento_Elasticsearch8
+Magento_Email
+Magento_EncryptionKey
+Magento_Fedex
+Magento_GiftMessage
+Magento_GiftMessageGraphQl
+Magento_GoogleAdwords
+Magento_GoogleAnalytics
+Magento_GoogleGtag
+Magento_Ui
+Magento_BundleGraphQl
+Magento_PageCache
+Magento_GraphQlNewRelic
+Magento_CatalogCmsGraphQl
+Magento_AdminGraphQlServer
+Magento_GroupedProduct
+Magento_GroupedImportExport
+Magento_GroupedCatalogInventory
+Magento_GroupedProductGraphQl
+Magento_DownloadableImportExport
+Magento_Captcha
+Magento_InstantPurchase
+Magento_CatalogAnalytics
+Magento_IntegrationGraphQl
+Magento_Inventory
+Magento_InventoryAdminUi
+Magento_InventoryAdvancedCheckout
+Magento_InventoryApi
+Magento_InventoryBundleImportExport
+Magento_InventoryBundleProduct
+Magento_InventoryBundleProductAdminUi
+Magento_InventoryBundleProductIndexer
+Magento_InventoryCatalog
+Magento_InventorySales
+Magento_InventoryCatalogAdminUi
+Magento_InventoryCatalogApi
+Magento_InventoryCatalogFrontendUi
+Magento_InventoryCatalogRule
+Magento_InventoryCatalogSearch
+Magento_InventoryCatalogSearchBundleProduct
+Magento_InventoryCatalogSearchConfigurableProduct
+Magento_ConfigurableProduct
+Magento_ConfigurableProductGraphQl
+Magento_InventoryConfigurableProduct
+Magento_InventoryConfigurableProductIndexer
+Magento_InventoryConfiguration
+Magento_InventoryConfigurationApi
+Magento_InventoryDistanceBasedSourceSelection
+Magento_InventoryDistanceBasedSourceSelectionAdminUi
+Magento_InventoryDistanceBasedSourceSelectionApi
+Magento_InventoryElasticsearch
+Magento_InventoryExportStockApi
+Magento_InventoryIndexer
+Magento_InventorySalesApi
+Magento_InventoryGroupedProduct
+Magento_InventoryGroupedProductAdminUi
+Magento_InventoryGroupedProductIndexer
+Magento_InventoryImportExport
+Magento_InventoryInStorePickupApi
+Magento_InventoryInStorePickupAdminUi
+Magento_InventorySourceSelectionApi
+Magento_InventoryInStorePickup
+Magento_InventoryInStorePickupGraphQl
+Magento_Shipping
+Magento_InventoryInStorePickupShippingApi
+Magento_InventoryInStorePickupQuoteGraphQl
+Magento_InventoryInStorePickupSales
+Magento_InventoryInStorePickupSalesApi
+Magento_InventoryInStorePickupQuote
+Magento_InventoryInStorePickupShipping
+Magento_InventoryInStorePickupShippingAdminUi
+Magento_Multishipping
+Magento_Webapi
+Magento_InventoryCache
+Magento_InventoryLowQuantityNotification
+Magento_Reports
+Magento_InventoryLowQuantityNotificationApi
+Magento_InventoryMultiDimensionalIndexerApi
+Magento_InventoryProductAlert
+Magento_InventoryQuoteGraphQl
+Magento_InventoryRequisitionList
+Magento_InventoryReservations
+Magento_InventoryReservationCli
+Magento_InventoryReservationsApi
+Magento_InventoryExportStock
+Magento_InventorySalesAdminUi
+Magento_CatalogInventoryGraphQl
+Magento_InventorySalesAsyncOrder
+Magento_InventorySalesFrontendUi
+Magento_InventorySetupFixtureGenerator
+Magento_InventoryShipping
+Magento_InventoryShippingAdminUi
+Magento_InventorySourceDeductionApi
+Magento_InventorySourceSelection
+Magento_InventoryInStorePickupFrontend
+Magento_InventorySwatchesFrontendUi
+Magento_InventoryVisualMerchandiser
+Magento_InventoryWishlist
+Magento_JwtFrameworkAdapter
+Magento_JwtUserToken
+Magento_LayeredNavigation
+Magento_LoginAsCustomer
+Magento_LoginAsCustomerAdminUi
+Magento_LoginAsCustomerApi
+Magento_LoginAsCustomerAssistance
+Magento_LoginAsCustomerFrontendUi
+Magento_LoginAsCustomerGraphQl
+Magento_LoginAsCustomerLog
+Magento_LoginAsCustomerPageCache
+Magento_LoginAsCustomerQuote
+Magento_LoginAsCustomerSales
+Magento_Marketplace
+Magento_MediaContent
+Magento_MediaContentApi
+Magento_MediaContentCatalog
+Magento_MediaContentCms
+Magento_MediaContentSynchronization
+Magento_MediaContentSynchronizationApi
+Magento_MediaContentSynchronizationCatalog
+Magento_MediaContentSynchronizationCms
+Magento_AdobeStockAsset
+Magento_MediaGalleryApi
+Magento_MediaGalleryCatalog
+Magento_MediaGalleryCatalogIntegration
+Magento_MediaGalleryCatalogUi
+Magento_MediaGalleryCmsUi
+Magento_MediaGalleryIntegration
+Magento_MediaGalleryMetadata
+Magento_MediaGalleryMetadataApi
+Magento_MediaGalleryRenditions
+Magento_MediaGalleryRenditionsApi
+Magento_MediaGallerySynchronization
+Magento_MediaGallerySynchronizationApi
+Magento_MediaGallerySynchronizationMetadata
+Magento_AdobeStockImageAdminUi
+Magento_MediaGalleryUiApi
+Magento_CatalogWidget
+Magento_MessageQueue
+Magento_ConfigurableImportExport
+Magento_MsrpConfigurableProduct
+Magento_MsrpGroupedProduct
+Magento_InventoryInStorePickupMultishipping
+Magento_MysqlMq
+Magento_NewRelicReporting
+Magento_CustomerGraphQl
+Magento_NewsletterGraphQl
+Magento_OfflinePayments
+Magento_SalesRule
+Magento_OpenSearch
+Magento_OrderCancellation
+Magento_OrderCancellationGraphQl
+Magento_OrderCancellationUi
+Magento_Sitemap
+Magento_PageBuilder
+Magento_PageBuilderAnalytics
+Magento_PageBuilderImageAttribute
+Magento_GraphQlCache
+Magento_CardinalCommerce
+Magento_PaymentGraphQl
+Magento_ServiceProxy
+Magento_Vault
+Magento_PaymentServicesDashboard
+Magento_PaymentServicesPaypalGraphQl
+Magento_QueryXml
+Magento_ServicesConnector
+Magento_Paypal
+Magento_PaypalGraphQl
+Magento_Persistent
+Magento_ProductAlert
+Magento_ProductVideo
+Magento_ServicesId
+Magento_CheckoutAgreements
+Magento_QuoteAnalytics
+Magento_QuoteBundleOptions
+Magento_QuoteConfigurableOptions
+Magento_QuoteDownloadableLinks
+Magento_InventoryConfigurableProductAdminUi
+Magento_ReCaptchaAdminUi
+Magento_ReCaptchaCheckout
+Magento_ReCaptchaCheckoutSalesRule
+Magento_ReCaptchaContact
+Magento_ReCaptchaCustomer
+Magento_ReCaptchaFrontendUi
+Magento_ReCaptchaMigration
+Magento_ReCaptchaNewsletter
+Magento_ReCaptchaPaypal
+Magento_ReCaptchaResendConfirmationEmail
+Magento_ReCaptchaReview
+Magento_ReCaptchaSendFriend
+Magento_ReCaptchaStorePickup
+Magento_ReCaptchaUi
+Magento_ReCaptchaUser
+Magento_ReCaptchaValidation
+Magento_ReCaptchaValidationApi
+Magento_ReCaptchaVersion2Checkbox
+Magento_ReCaptchaVersion2Invisible
+Magento_ReCaptchaVersion3Invisible
+Magento_ReCaptchaWebapiApi
+Magento_ReCaptchaWebapiGraphQl
+Magento_ReCaptchaWebapiRest
+Magento_ReCaptchaWebapiUi
+Magento_ReCaptchaWishlist
+Magento_RelatedProductGraphQl
+Magento_ReleaseNotification
+Magento_RemoteStorage
+Magento_InventoryLowQuantityNotificationAdminUi
+Magento_RequireJs
+Magento_Review
+Magento_ReviewAnalytics
+Magento_ReviewGraphQl
+Magento_AwsS3
+Magento_Rss
+Magento_PageBuilderAdminAnalytics
+Magento_ServicesIdGraphQlServer
+Magento_CatalogRuleConfigurable
+Magento_SalesAnalytics
+Magento_ServicesIdLayout
+Magento_SalesGraphQl
+Magento_SalesInventory
+Magento_OfflineShipping
+Magento_SalesRuleGraphQl
+Magento_ConfigurableProductSales
+Magento_UrlRewrite
+Magento_UrlRewriteGraphQl
+Magento_CustomerAnalytics
+Magento_Securitytxt
+Magento_SendFriend
+Magento_SendFriendGraphQl
+Magento_PaymentServicesBase
+Magento_SaaSCommon
+Magento_SalesDataExporter
+Magento_StoreDataExporter
+Magento_PaymentServicesPaypal
+Magento_InventoryInStorePickupSalesAdminUi
+Magento_AwsS3PageBuilder
+Magento_AsynchronousOperations
+Magento_AsyncConfig
+Magento_PaymentServicesSaaSExport
+Magento_CompareListGraphQl
+Magento_Swagger
+Magento_SwaggerWebapi
+Magento_SwaggerWebapiAsync
+Magento_Swatches
+Magento_SwatchesGraphQl
+Magento_SwatchesLayeredNavigation
+Magento_Tax
+Magento_TaxGraphQl
+Magento_TaxImportExport
+Magento_InventoryGraphQl
+Magento_ThemeGraphQl
+Magento_Translation
+Magento_AdminAdobeImsTwoFactorAuth
+Magento_GoogleOptimizer
+Magento_Ups
+Magento_SampleData
+Magento_CatalogUrlRewriteGraphQl
+Magento_Stomp
+Magento_Usps
+Magento_InventoryConfigurableProductFrontendUi
+Magento_PaypalCaptcha
+Magento_VaultGraphQl
+Magento_Version
+Magento_InventoryInStorePickupWebapiExtension
+Magento_WebapiAsync
+Magento_WebapiSecurity
+Magento_Weee
+Magento_WeeeGraphQl
+Magento_CurrencySymbol
+Magento_Wishlist
+Magento_WishlistAnalytics
+Magento_WishlistGraphQl
+PayPal_Braintree
+PayPal_BraintreeCustomerBalance
+PayPal_BraintreeGiftCard
+PayPal_BraintreeGiftCardAccount
+PayPal_BraintreeGiftWrapping
+PayPal_BraintreeGraphQl
+PayPal_BraintreeReward
+[2026-04-17T16:45:12.808566+00:00] NOTICE: End of reconciling modules.
+[2026-04-17T16:45:12.808601+00:00] DEBUG: Step "refresh-modules" finished
+[2026-04-17T16:45:12.808623+00:00] DEBUG: Running step: copy-pub-static
+[2026-04-17T16:45:12.808762+00:00] INFO: File "front-static.php" was copied
+[2026-04-17T16:45:12.808791+00:00] DEBUG: Step "copy-pub-static" finished
+[2026-04-17T16:45:12.808809+00:00] DEBUG: Running step: set-report-dir-nesting-level
+[2026-04-17T16:45:12.808826+00:00] INFO: Configuring directory nesting level for saving error reports
+[2026-04-17T16:45:12.808914+00:00] NOTICE: The file /app/pub/errors/local.xml with the `config.report.dir_nesting_level` property: `1` was created.
+[2026-04-17T16:45:12.808948+00:00] DEBUG: Step "set-report-dir-nesting-level" finished
+[2026-04-17T16:45:12.808965+00:00] DEBUG: Running step: marshall-files
+[2026-04-17T16:45:12.809201+00:00] DEBUG: Step "marshall-files" finished
+[2026-04-17T16:45:12.809229+00:00] DEBUG: Running step: copy-sample-data
+[2026-04-17T16:45:12.809257+00:00] INFO: Sample data media was not found. Skipping.
+[2026-04-17T16:45:12.809285+00:00] DEBUG: Step "copy-sample-data" finished
+[2026-04-17T16:45:12.809302+00:00] DEBUG: Running step: enable-eventing
+[2026-04-17T16:45:12.809327+00:00] DEBUG: Step "enable-eventing" finished
+[2026-04-17T16:45:12.809349+00:00] DEBUG: Running step: enable-webhooks
+[2026-04-17T16:45:12.809372+00:00] DEBUG: Step "enable-webhooks" finished
+[2026-04-17T16:45:12.809408+00:00] DEBUG: Running step: compile-di
+[2026-04-17T16:45:12.809441+00:00] NOTICE: Running DI compilation
+[2026-04-17T16:45:12.809602+00:00] DEBUG: php ./bin/magento setup:di:compile --ansi --no-interaction
+[2026-04-17T16:45:45.382471+00:00] DEBUG: [32mCompilation was started.[39m
+
+[32mGenerated code and dependency injection configuration successfully.[39m
+[2026-04-17T16:45:45.382594+00:00] NOTICE: End of running DI compilation
+[2026-04-17T16:45:45.382643+00:00] DEBUG: Step "compile-di" finished
+[2026-04-17T16:45:45.382672+00:00] DEBUG: Running step: dump-autoload
+[2026-04-17T16:45:45.382817+00:00] DEBUG: composer dump-autoload -o --ansi --no-interaction
+[2026-04-17T16:45:55.585800+00:00] DEBUG: [32mGenerating optimized autoload files[39m
+[32mGenerated optimized autoload files containing 42031 classes[39m
+[2026-04-17T16:45:55.585891+00:00] DEBUG: Step "dump-autoload" finished
+[2026-04-17T16:45:55.585920+00:00] DEBUG: Running step: deploy-static-content
+[2026-04-17T16:45:55.585955+00:00] DEBUG: Flag .static_content_deploy has already been deleted.
+[2026-04-17T16:45:55.586307+00:00] NOTICE: Skipping static content deploy: No stores/website/locales found in config.php
+[2026-04-17T16:45:55.586354+00:00] DEBUG: Step "deploy-static-content" finished
+[2026-04-17T16:45:55.586381+00:00] DEBUG: Running step: run-baler
+[2026-04-17T16:45:55.586404+00:00] DEBUG: Baler JS bundling is disabled.
+[2026-04-17T16:45:55.586438+00:00] DEBUG: Step "run-baler" finished
+[2026-04-17T16:45:55.586461+00:00] INFO: Scenario(s) finished
+[2026-04-17T16:45:56.547629+00:00] INFO: Starting scenario(s): scenario/build/transfer.xml (magento/magento2-base version: 2.4.8-p4)
+[2026-04-17T16:45:56.548190+00:00] DEBUG: Running step: compress-static-content
+[2026-04-17T16:45:56.548227+00:00] INFO: Skipping build-time static content compression because static content deployment has not happened.
+[2026-04-17T16:45:56.548278+00:00] DEBUG: Step "compress-static-content" finished
+[2026-04-17T16:45:56.548298+00:00] DEBUG: Running step: clear-init-directory
+[2026-04-17T16:45:56.548320+00:00] INFO: Clearing temporary directory.
+[2026-04-17T16:45:56.548438+00:00] DEBUG: Step "clear-init-directory" finished
+[2026-04-17T16:45:56.548472+00:00] DEBUG: Running step: backup-data
+[2026-04-17T16:45:56.548490+00:00] NOTICE: Copying data to the ./init directory
+[2026-04-17T16:45:56.548521+00:00] DEBUG: Flag var/.regenerate has already been deleted.
+[2026-04-17T16:45:56.548543+00:00] INFO: SCD not performed during build
+[2026-04-17T16:45:56.548664+00:00] INFO: Copying writable directories to /app/init/ directory.
+[2026-04-17T16:45:56.548700+00:00] DEBUG: Copying /app/app/etc->/app/init/app/etc
+[2026-04-17T16:45:56.561218+00:00] DEBUG: Copying /app/pub/media->/app/init/pub/media
+[2026-04-17T16:45:56.564464+00:00] NOTICE: Directory /app/var/view_preprocessed does not exist.
+[2026-04-17T16:45:56.564546+00:00] DEBUG: Copying /app/var/log->/app/init/var/log

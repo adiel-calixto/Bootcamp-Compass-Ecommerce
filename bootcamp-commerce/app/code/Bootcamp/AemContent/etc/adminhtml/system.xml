@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="bootcamp" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Bootcamp</label>
+            <tab>general</tab>
+            <resource>Magento_Config::config</resource>
+            <group id="aem" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>AEM Content</label>
+                <field id="api_url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AEM API URL</label>
+                    <comment>Default: http://localhost:4502/content/experience-fragments/bootcamp-wknd/us/en/banner-promo-bootcamp/master.model.json</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

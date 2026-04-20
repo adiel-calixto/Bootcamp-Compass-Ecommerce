@@ -1,0 +1,26 @@
+<sly data-sly-use.model="com.bootcamp.core.models.ProductShowcase"/>
+
+<div class="cmp-product-showcase" data-sly-test="${!model.empty}">
+  <h2 class="cmp-product-showcase__title">${model.sectionTitle}</h2>
+
+  <div class="cmp-product-showcase__grid">
+    <sly data-sly-list.product="${model.products}">
+      <div class="cmp-product-showcase__card ${product.highlight ? 'cmp-product-showcase__card--highlight' : ''}">
+        <div class="cmp-product-showcase__card-header">
+          <span class="cmp-product-showcase__sku">${product.sku}</span>
+          <span data-sly-test="${product.highlight}" class="cmp-product-showcase__badge">Destaque</span>
+        </div>
+        <h3 class="cmp-product-showcase__name">${product.name}</h3>
+        <p class="cmp-product-showcase__description">${product.description}</p>
+        <div class="cmp-product-showcase__footer">
+          <span class="cmp-product-showcase__price">${product.formattedPrice}</span>
+          <span data-sly-test="${product.techStack}" class="cmp-product-showcase__tech">${product.techStack}</span>
+        </div>
+      </div>
+    </sly>
+  </div>
+</div>
+
+<div data-sly-test="${model.empty}" class="cmp-product-showcase--empty">
+  <p>Nenhum produto disponível. Verifique a configuração da URL da API.</p>
+</div>

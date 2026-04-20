@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Product Showcase"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+      <tabs jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+          <config jcr:primaryType="nt:unstructured"
+            jcr:title="Configuração"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            margin="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+
+              <apiUrl jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="URL da API Commerce"
+                name="./apiUrl"
+                value="http://magento2.docker/rest/V1/bootcamp/products" />
+
+              <title jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Título da Seção"
+                name="./sectionTitle"
+                value="Produtos em Destaque" />
+
+              <showHighlightsOnly jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                fieldDescription="Exibir apenas produtos marcados como destaque"
+                name="./showHighlightsOnly"
+                text="Apenas destaques"
+                value="true" />
+
+            </items>
+          </config>
+        </items>
+      </tabs>
+    </items>
+  </content>
+</jcr:root>

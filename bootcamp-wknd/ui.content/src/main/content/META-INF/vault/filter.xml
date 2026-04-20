@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/bootcamp-wknd" mode="merge"/>
+    <filter root="/content/bootcamp-wknd" mode="merge"/>
+    <filter root="/content/dam/bootcamp-wknd" mode="merge">
+        <exclude pattern="/content/dam/bootcamp-wknd(/.*)?"/>
+        <include pattern="/content/dam/bootcamp-wknd/jcr:content(/.*)?"/>
+    </filter>
+    <filter root="/content/dam/bootcamp-wknd/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/bootcamp-wknd" mode="merge"/>
+</workspaceFilter>

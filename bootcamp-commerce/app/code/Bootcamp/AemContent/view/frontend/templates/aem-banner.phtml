@@ -1,0 +1,12 @@
+<?php
+
+$content = $block->getAemContent();
+?>
+<div class="aem-banner" style="background: linear-gradient(135deg,
+#1a73e8, #2d3748); color: white; padding: 2rem; text-align: center;">
+    <h2><?= $block->escapeHtml($content['title']) ?></h2>
+    <p><?= $block->escapeHtml($content['text']) ?></p>
+    <?php if ($content['success']): ?>
+        <small>Conteudo gerenciado via AEM</small>
+    <?php endif; ?>
+</div>
